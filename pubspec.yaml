@@ -1,5 +1,5 @@
 name: phoenix_dialog
-description: A new Flutter package project.
+description: phoenix 将做为企业级基础组件:Dialog,提供项目支持。
 version: 1.0.0
 homepage: 'https://github.com/vsguji/phoenix_dialog.git'
 
@@ -10,7 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  phoenix_base: ^1.0.6
+  phoenix_btn: ^1.0.1
+  phoenix_line: ^1.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
