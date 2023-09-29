@@ -5,6 +5,7 @@ import 'package:phoenix_dialog/extension/dialog_total_config.dart';
 import 'config/dialog_config.dart';
 import 'dialog.dart';
 import 'dialog_utils.dart';
+import 'extension/dialog_assets.dart';
 
 /// 点击item回调
 /// shareChannel 是分享渠道一般传入 [BrnShareItemConstants] 下的值
@@ -164,7 +165,8 @@ class ShareDialog extends StatelessWidget {
               child: Container(
                 width: 30,
                 height: 30,
-                child: PhoenixTools.getAssetImage(BaseAsset.iconPickerClose),
+                child: PhoenixTools.getAssetImage(DialogAssets.iconPickerClose,
+                    package: 'phoenix_dialog'),
               ),
               onTap: () {
                 Navigator.of(context).pop();

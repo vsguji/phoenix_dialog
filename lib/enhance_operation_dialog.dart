@@ -5,6 +5,7 @@ import 'package:phoenix_dialog/extension/dialog_total_config.dart';
 
 import 'config/dialog_config.dart';
 import 'dialog.dart';
+import 'extension/dialog_assets.dart';
 
 class DialogConstants {
   /// 提示图标
@@ -21,9 +22,9 @@ class DialogConstants {
 
   /// icon地址列表
   static const List shareItemImagePathList = [
-    BaseAsset.iconAlert,
-    BaseAsset.iconWarning,
-    BaseAsset.iconSuccess,
+    DialogAssets.iconAlert,
+    DialogAssets.iconWarning,
+    DialogAssets.iconSuccess,
   ];
 }
 
@@ -89,7 +90,8 @@ class EnhanceOperationDialog extends StatelessWidget {
         iconImage: (iconType == DialogConstants.iconCustom)
             ? customIconWidget as Image
             : PhoenixTools.getAssetImage(
-                DialogConstants.shareItemImagePathList[iconType]),
+                DialogConstants.shareItemImagePathList[iconType],
+                package: 'phoenix_dialog'),
         titleText: titleText,
         messageText: descText,
         warningWidget: Container(

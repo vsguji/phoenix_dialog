@@ -4,6 +4,7 @@ import 'package:phoenix_dialog/extension/dialog_total_config.dart';
 
 import 'dialog_utils.dart';
 import 'config/dialog_config.dart';
+import 'extension/dialog_assets.dart';
 
 /// 描述: 内容可扩展Dialog
 // ignore: must_be_immutable
@@ -100,7 +101,7 @@ class ContentExportWidget extends StatelessWidget {
               behavior: HitTestBehavior.opaque,
               child: Padding(
                 padding: const EdgeInsets.all(15),
-                child: PhoenixTools.getAssetImage(BaseAsset.iconPickerClose),
+                child: PhoenixTools.getAssetImage(DialogAssets.iconPickerClose,package: 'phoenix_dialog'),
               )));
     }
     return const SizedBox.shrink();

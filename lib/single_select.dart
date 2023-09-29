@@ -6,6 +6,7 @@ import 'package:phoenix_line/phoenix_line.dart';
 import 'config/dialog_config.dart';
 import 'dialog.dart';
 import 'dialog_utils.dart';
+import 'extension/dialog_assets.dart';
 
 typedef SingleSelectOnSubmitCallback = Function(String? data);
 typedef SingleSelectOnItemClickCallback = void Function(
@@ -267,7 +268,8 @@ class SingleSelectDialogWidgetState extends State<SingleSelectDialogWidget> {
                               child: Padding(
                                 padding: const EdgeInsets.all(15),
                                 child: PhoenixTools.getAssetImage(
-                                    BaseAsset.iconPickerClose),
+                                    DialogAssets.iconPickerClose,
+                                    package: 'phoenix_dialog'),
                               )))
                       : const SizedBox.shrink()
                 ],
@@ -348,8 +350,10 @@ class SingleSelectDialogWidgetState extends State<SingleSelectDialogWidget> {
                     height: 44,
                     child: widget.checkedItem == widget.conditions![index]
                         ? PhoenixTools.getAssetImageWithBandColor(
-                            BaseAsset.iconSingleSelected)
-                        : PhoenixTools.getAssetImage(BaseAsset.iconUnSelect),
+                            DialogAssets.iconSingleSelected,
+                            package: 'phoenix_dialog')
+                        : PhoenixTools.getAssetImage(DialogAssets.iconUnSelect,
+                            package: 'phoenix_dialog'),
                   ),
                   onTap: () {
                     if (widget.onItemClick != null) {

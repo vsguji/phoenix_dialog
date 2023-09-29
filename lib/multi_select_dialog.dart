@@ -4,6 +4,7 @@ import 'package:phoenix_dialog/extension/dialog_total_config.dart';
 import 'package:phoenix_line/phoenix_line.dart';
 
 import 'content_export_dialog.dart';
+import 'extension/dialog_assets.dart';
 
 typedef MultiSelectDialogClickSubmitCallback = bool Function(
     List<MultiSelectItem> data);
@@ -290,8 +291,10 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
                       height: 44,
                       child: widget.conditions[index].isChecked
                           ? PhoenixTools.getAssetImageWithBandColor(
-                              BaseAsset.iconMultiSelected)
-                          : PhoenixTools.getAssetImage(BaseAsset.iconUnSelect)),
+                              DialogAssets.iconMultiSelected)
+                          : PhoenixTools.getAssetImage(
+                              DialogAssets.iconUnSelect,
+                              package: 'phoenix_dialog')),
                 ],
               ),
             ),
