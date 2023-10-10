@@ -177,7 +177,7 @@ class MiddleInputDialog {
             )),
       ),
     ));
-    return BrnDialogManager.showConfirmDialog(context,
+    return DialogManager.showConfirmDialog(context,
         cancel: cancelText ?? BrnIntl.of(context).localizedResource.cancel,
         confirm: confirmText ?? BrnIntl.of(context).localizedResource.ok,
         title: title,

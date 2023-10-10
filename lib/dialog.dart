@@ -116,7 +116,7 @@ enum _ButtonType {
 ///2：使用对话框管理器
 ///  无标题、单按钮
 ///  void _showStyle1Dialog(BuildContext context) {
-///    BrnDialogManager.showSingleButtonDialog(context,
+///    DialogManager.showSingleButtonDialog(context,
 ///        label: "知道了", message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息", onTap: () {
 ///      BrnToast.show('知道了', context);
 ///    });
@@ -571,7 +571,7 @@ class PhoenixDialog extends AlertDialog {
 ///
 /// titleMaxLines 标题的最大行数
 ///
-class BrnDialogManager {
+class DialogManager {
   ///展示底部只有一个按钮的对话框 对话框的点击回调是onTap
   ///label 底部按钮的文案
   ///labelWidget  自定义底部按钮的显示
