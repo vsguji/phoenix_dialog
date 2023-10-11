@@ -63,6 +63,7 @@ class EnhanceOperationDialog extends StatelessWidget {
   DialogConfig? themeData;
 
   EnhanceOperationDialog({
+    super.key,
     this.iconType = DialogConstants.iconAlert,
     this.customIconWidget,
     required this.context,
@@ -151,7 +152,7 @@ class EnhanceOperationDialog extends StatelessWidget {
   /// 构建主按钮widget
   Widget _configMainButton(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 20, right: 20),
+      padding: const EdgeInsets.only(left: 20, right: 20),
       child: BigMainButton(
         title: mainButtonText ?? BrnIntl.of(context).localizedResource.confirm,
         onTap: () {

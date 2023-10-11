@@ -172,7 +172,7 @@ class PhoenixDialog extends AlertDialog {
   /// 标题最大行数
   final int titleMaxLines;
 
-  PhoenixDialog({
+  const PhoenixDialog({
     Key? key,
     this.showIcon = false,
     this.iconImage,
@@ -270,8 +270,9 @@ class PhoenixDialog extends AlertDialog {
       return _createWidget(iconImage!);
     }
     if (showIcon) {
-      return _createWidget(
-          PhoenixTools.getAssetImageWithBandColor("icons/icon_alter.png"));
+      return _createWidget(PhoenixTools.getAssetImageWithBandColor(
+          'icons/icon_alter.png',
+          package: 'phoenix_dialog'));
     }
 
     return const SizedBox.shrink();

@@ -224,8 +224,9 @@ class ShareDialog extends StatelessWidget {
         title = BrnIntl.of(context)
             .localizedResource
             .shareChannels[shareChannels[index]];
-        image = PhoenixTools.getAssetImage(BaseShareItemConstants
-            .shareItemImagePathList[shareChannels[index]]);
+        image = PhoenixTools.getAssetImage(
+            BaseShareItemConstants.shareItemImagePathList[shareChannels[index]],
+            package: 'phoenix_dialog');
       }
       //如果没图或没文字则不显示
       if (title == null || image == null) {

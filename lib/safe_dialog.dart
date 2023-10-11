@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 /// * * * * * * * * * * *
 /// * 描述: 可以放心 dismiss 的 Dialog 工具类，
-/// * 可基于该类进行二次封装，类似 [BrnLoadingDialog] 的 show、dismiss 方法
+/// * 可基于该类进行二次封装，类似 [LoadingDialog] 的 show、dismiss 方法
 /// *
 /// * 注意：若想删除指定 Dialog，必须在 show、dismiss 方法时传 tag，
 /// * * * * * * * * * * *

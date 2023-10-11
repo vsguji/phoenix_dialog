@@ -57,7 +57,8 @@ class SingleSelectDialog extends Dialog {
   final VoidCallback? onCloseClick;
 
   const SingleSelectDialog(
-      {this.isClose = true,
+      {super.key,
+      this.isClose = true,
       this.title = "",
       this.messageText,
       this.messageWidget,
@@ -119,7 +120,8 @@ class SingleSelectDialogWidget extends StatefulWidget {
   DialogConfig? themeData;
 
   SingleSelectDialogWidget(
-      {this.isClose = true,
+      {super.key,
+      this.isClose = true,
       this.title = "",
       this.messageText,
       this.messageWidget,

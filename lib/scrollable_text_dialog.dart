@@ -37,7 +37,8 @@ class ScrollableTextDialog extends Dialog {
   final bool isShowOperateWidget;
 
   const ScrollableTextDialog(
-      {this.title,
+      {super.key,
+      this.title,
       this.isClose = true,
       required this.contentText,
       this.textColor = const Color(0xFF666666),
@@ -96,7 +97,8 @@ class ScrollableText extends StatelessWidget {
   final bool isShowOperateWidget;
 
   const ScrollableText(
-      {this.title,
+      {super.key,
+      this.title,
       this.isClose = true,
       required this.contentText,
       this.textColor,
@@ -120,6 +122,7 @@ class ScrollableText extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(right: 8),
               child: SingleChildScrollView(
+                primary: true,
                 child:
                     Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
                   BrnCSS2Text.toTextView(contentText,

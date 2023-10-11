@@ -34,7 +34,8 @@ class ContentExportWidget extends StatelessWidget {
   DialogConfig? themeData;
 
   ContentExportWidget(this.contentWidget,
-      {this.title,
+      {super.key,
+      this.title,
       required this.isClose,
       this.submitText,
       this.onSubmit,
@@ -101,7 +102,8 @@ class ContentExportWidget extends StatelessWidget {
               behavior: HitTestBehavior.opaque,
               child: Padding(
                 padding: const EdgeInsets.all(15),
-                child: PhoenixTools.getAssetImage(DialogAssets.iconPickerClose,package: 'phoenix_dialog'),
+                child: PhoenixTools.getAssetImage(DialogAssets.iconPickerClose,
+                    package: 'phoenix_dialog'),
               )));
     }
     return const SizedBox.shrink();

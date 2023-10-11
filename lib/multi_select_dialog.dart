@@ -291,7 +291,8 @@ class MultiSelectPickerWidgetState extends State<MultiSelect> {
                       height: 44,
                       child: widget.conditions[index].isChecked
                           ? PhoenixTools.getAssetImageWithBandColor(
-                              DialogAssets.iconMultiSelected)
+                              DialogAssets.iconMultiSelected,
+                              package: 'phoenix_dialog')
                           : PhoenixTools.getAssetImage(
                               DialogAssets.iconUnSelect,
                               package: 'phoenix_dialog')),
