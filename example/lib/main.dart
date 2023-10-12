@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:phoenix_base/phoenix.dart';
 import 'package:phoenix_dialog/phoenix_dialog.dart';
+import 'package:phoenix_loading/phoenix_loading.dart';
 
 import 'list_item.dart';
 
@@ -652,7 +653,7 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       barrierDismissible: true,
       builder: (BuildContext dialogContext) {
-        return const PhoenixDialog(
+        return PhoenixDialog(
           messageText: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息",
           actionsText: [],
         );
@@ -856,26 +857,26 @@ class _MyHomePageState extends State<MyHomePage> {
 
   ///安全关闭的弹框
   void _showSafeDialog(BuildContext context) {
-    // SafeDialog.show(
-    //     context: context,
-    //     tag: "AA",
-    //     builder: (context) {
-    //       return PageLoading(
-    //         content: 'Safe AA',
-    //       );
-    //     }).then((result) {
-    //   // BrnToast.show('result: $result ', context);
-    // });
+    SafeDialog.show(
+        context: context,
+        tag: "AA",
+        builder: (context) {
+          return const PageLoading(
+            content: 'Safe AA',
+          );
+        }).then((result) {
+      // BrnToast.show('result: $result ', context);
+    });
 
-    // SafeDialog.show(
-    //     context: context,
-    //     builder: (context) {
-    //       return PageLoading(
-    //         content: 'Safe BB',
-    //       );
-    //     }).then((result) {
-    //   // BrnToast.show('result: $result ', context);
-    // });
+    SafeDialog.show(
+        context: context,
+        builder: (context) {
+          return const PageLoading(
+            content: 'Safe BB',
+          );
+        }).then((result) {
+      // BrnToast.show('result: $result ', context);
+    });
 
     Future.delayed(const Duration(seconds: 5)).then((_) {
       SafeDialog.dismiss(
