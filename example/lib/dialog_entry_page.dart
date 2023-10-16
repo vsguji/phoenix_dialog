@@ -5,360 +5,280 @@ import 'package:flutter/services.dart';
 import 'package:phoenix_base/phoenix.dart';
 import 'package:phoenix_dialog/phoenix_dialog.dart';
 import 'package:phoenix_loading/phoenix_loading.dart';
+import 'package:phoenix_navbar/phoenix_navbar.dart';
+import 'package:phoenix_toast/phoenix_toast.dart';
 
-import 'dialog_entry_page.dart';
 import 'list_item.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+class DialogEntryPage extends StatelessWidget {
+  final String _title;
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: DialogEntryPage('Dialog'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  DialogEntryPage(this._title);
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: ListView(
-        children: <Widget>[
-          ListItem(
-            title: "富文本弹窗",
-            isShowLine: false,
-            isSupportTheme: true,
-            describe: '富文本弹窗',
-            onPressed: () {
-              _showRichTextDialog(context);
-            },
-          ),
-          ListItem(
-            title: "无标题+无按钮",
-            isSupportTheme: true,
-            describe: '无标题、无按钮',
-            onPressed: () {
-              _showStyle0Dialog(context);
-            },
-          ),
-          ListItem(
-            title: "无标题+单按钮",
-            isSupportTheme: true,
-            describe: '无标题、辅助信息、单按钮',
-            onPressed: () {
-              _showStyle1Dialog(context);
-            },
-          ),
-          ListItem(
-            title: "无标题+单按钮，单行内容",
-            isSupportTheme: true,
-            describe: '无标题、辅助信息、单按钮',
-            onPressed: () {
-              _showStyle1Dialog0(context);
-            },
-          ),
-          ListItem(
-            title: "标题+信息+双按钮",
-            isSupportTheme: true,
-            describe: '有标题、双底部按钮、辅助信息为文案',
-            onPressed: () {
-              _showStyle4Dialog(context);
-            },
-          ),
-          ListItem(
-            title: "标题+信息+单按钮",
-            isSupportTheme: true,
-            describe: '有标题、单按钮、有辅助文案',
-            onPressed: () {
-              _showStyle2Dialog(context);
-            },
-          ),
-          ListItem(
-            title: "标题+信息+单按钮",
-            describe: '有标题、单按钮、有【多行】辅助文案',
-            onPressed: () {
-              _showStyle2_1Dialog(context);
-            },
-          ),
-          ListItem(
-            title: "标题+信息+警示",
-            isSupportTheme: true,
-            describe: '有标题、单按钮、有辅助文案',
-            onPressed: () {
-              _showStyle9Dialog(context);
-            },
-          ),
-          ListItem(
-            title: "标题+信息+自定义警示UI",
-            isSupportTheme: true,
-            describe: '有标题、单按钮、有辅助文案',
-            onPressed: () {
-              _showStyle9_1Dialog(context);
-            },
-          ),
-          ListItem(
-            title: "标题+按钮",
-            isSupportTheme: true,
-            describe: '双个按钮、换行标题',
-            onPressed: () {
-              _showStyle8Dialog(context);
-            },
-          ),
-          ListItem(
-            title: "Icon+标题+信息+双按钮",
-            isSupportTheme: true,
-            describe: '双按钮、有头部Icon、辅助信息',
-            onPressed: () {
-              _showStyle71Dialog(context);
-            },
-          ),
-          ListItem(
-            title: "Icon+标题+单按钮",
-            isSupportTheme: true,
-            describe: '单按钮、有头部Icon',
-            onPressed: () {
-              _showStyle7Dialog(context);
-            },
-          ),
-          ListItem(
-            title: "多按钮 + 标题+信息",
-            isSupportTheme: true,
-            describe: '有标题、多按钮、辅助信息为文案',
-            onPressed: () {
-              _showStyle6Dialog(context);
-            },
-          ),
-          ListItem(
-            title: "多按钮 + 标题",
-            isSupportTheme: true,
-            describe: '标题、多按钮',
-            onPressed: () {
-              _showStyle5_1Dialog(context);
-            },
-          ),
-          ListItem(
-            title: "多按钮 + 信息",
-            isSupportTheme: true,
-            describe: '无标题、多按钮、辅助信息为文案',
-            onPressed: () {
-              _showStyle5Dialog(context);
-            },
-          ),
-          ListItem(
-            title: "标题+信息+输入+按钮",
-            isSupportTheme: true,
-            describe: '中间有输入框弹框',
-            onPressed: () {
-              _showMiddleInputDialog(context);
-            },
-          ),
-          ListItem(
-            title: "标题+输入+按钮",
-            isSupportTheme: true,
-            describe: '中间有输入框弹框',
-            onPressed: () {
-              _showMiddleInputDialog2(context);
-            },
-          ),
-          ListItem(
-            title: "标题+输入+按钮",
-            isSupportTheme: true,
-            describe: '中间有输入框弹框, 设置最大高度',
-            onPressed: () {
-              _showMiddleInputDialog3(context);
-            },
-          ),
-          ListItem(
-            title: "标题+单选选项+按钮",
-            isSupportTheme: true,
-            describe: '中间单选弹框（SingleSelectDialogWidget）',
-            onPressed: () {
-              _showMiddleSingleSelectPicker(context);
-            },
-          ),
-          ListItem(
-            title: "标题+多选选项+按钮",
-            isSupportTheme: true,
-            describe: '中间多选弹框（MultiSelectDialog）',
-            onPressed: () {
-              _showMiddleMultiSelectDialog(context);
-            },
-          ),
-          ListItem(
-            title: "标题+提示信息文本+多选选项+按钮",
-            isSupportTheme: true,
-            describe: '中间多选弹框（MultiSelectDialog）',
-            onPressed: () {
-              _showMiddleMultiSelectWithMessageDialog(context);
-            },
-          ),
-          ListItem(
-            title: "标题+提示信息Widget+多选选项+按钮",
-            isSupportTheme: true,
-            describe: '中间多选弹框（MultiSelectDialog）',
-            onPressed: () {
-              _showMiddleMultiSelectWithMessageWidgetDialog(context);
-            },
-          ),
-          ListItem(
-            title: "Loading Dialog",
-            describe: 'LoadingDialog Example',
-            onPressed: () {
-              _showBrnLoadingDialog(context);
-            },
-          ),
-          ListItem(
-            title: "Safe Dialog",
-            describe: '可以放心 pop 的 Dialog，防止误关闭页面',
-            onPressed: () {
-              _showSafeDialog(context);
-            },
-          ),
-          ListItem(
-            title: "Share Dialog",
-            isSupportTheme: true,
-            describe: '分享Dialog（五个 icon）',
-            onPressed: () {
-              _showBrnShareDialog5(context);
-            },
-          ),
-          ListItem(
-            title: "Share Dialog",
-            isSupportTheme: true,
-            describe: '分享Dialog（3个 icon）',
-            onPressed: () {
-              _showBrnShareDialog3(context);
-            },
-          ),
-          ListItem(
-            title: "Two Vertical Button Dialog（单按钮）",
-            isSupportTheme: true,
-            describe: '主次要按钮Dialog',
-            onPressed: () {
-              _showBrnOneVerticalButtonDialogDialog(context);
-            },
-          ),
-          ListItem(
-            title: "Two Vertical Button Dialog（双按钮）",
-            describe: '主次要按钮Dialog',
-            isSupportTheme: true,
-            onPressed: () {
-              _showBrnTwoVerticalButtonDialogDialog(context);
-            },
-          ),
-          ListItem(
-            title: "纯文本弹框",
-            isSupportTheme: true,
-            describe: '标题+纯本文内容+按钮',
-            onPressed: () {
-              _showStyle81Dialog(context);
-            },
-          ),
-          ListItem(
-            title: "纯文本弹框含富文本",
-            isSupportTheme: true,
-            describe: '标题+纯本文内容含富文本+按钮',
-            onPressed: () {
-              _showStyle82Dialog(context);
-            },
-          ),
-          ListItem(
-            title: "纯文本弹框无标题",
-            isSupportTheme: true,
-            describe: '纯本文内容+按钮',
-            onPressed: () {
-              _showStyle83Dialog(context);
-            },
-          ),
-          ListItem(
-            title: "纯文本弹框无操作按钮",
-            isSupportTheme: true,
-            describe: '标题+纯本文内容',
-            onPressed: () {
-              _showStyle84Dialog(context);
-            },
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        appBar: PhoenixAppBar(
+          title: _title,
+        ),
+        body: ListView(
+          children: <Widget>[
+            ListItem(
+              title: "富文本弹窗",
+              isShowLine: false,
+              isSupportTheme: true,
+              describe: '富文本弹窗',
+              onPressed: () {
+                _showRichTextDialog(context);
+              },
+            ),
+            ListItem(
+              title: "无标题+无按钮",
+              isSupportTheme: true,
+              describe: '无标题、无按钮',
+              onPressed: () {
+                _showStyle0Dialog(context);
+              },
+            ),
+            ListItem(
+              title: "无标题+单按钮",
+              isSupportTheme: true,
+              describe: '无标题、辅助信息、单按钮',
+              onPressed: () {
+                _showStyle1Dialog(context);
+              },
+            ),
+            ListItem(
+              title: "无标题+单按钮，单行内容",
+              isSupportTheme: true,
+              describe: '无标题、辅助信息、单按钮',
+              onPressed: () {
+                _showStyle1Dialog0(context);
+              },
+            ),
+            ListItem(
+              title: "标题+信息+双按钮",
+              isSupportTheme: true,
+              describe: '有标题、双底部按钮、辅助信息为文案',
+              onPressed: () {
+                _showStyle4Dialog(context);
+              },
+            ),
+            ListItem(
+              title: "标题+信息+单按钮",
+              isSupportTheme: true,
+              describe: '有标题、单按钮、有辅助文案',
+              onPressed: () {
+                _showStyle2Dialog(context);
+              },
+            ),
+            ListItem(
+              title: "标题+信息+单按钮",
+              describe: '有标题、单按钮、有【多行】辅助文案',
+              onPressed: () {
+                _showStyle2_1Dialog(context);
+              },
+            ),
+            ListItem(
+              title: "标题+信息+警示",
+              isSupportTheme: true,
+              describe: '有标题、单按钮、有辅助文案',
+              onPressed: () {
+                _showStyle9Dialog(context);
+              },
+            ),
+            ListItem(
+              title: "标题+信息+自定义警示UI",
+              isSupportTheme: true,
+              describe: '有标题、单按钮、有辅助文案',
+              onPressed: () {
+                _showStyle9_1Dialog(context);
+              },
+            ),
+            ListItem(
+              title: "标题+按钮",
+              isSupportTheme: true,
+              describe: '双个按钮、换行标题',
+              onPressed: () {
+                _showStyle8Dialog(context);
+              },
+            ),
+            ListItem(
+              title: "Icon+标题+信息+双按钮",
+              isSupportTheme: true,
+              describe: '双按钮、有头部Icon、辅助信息',
+              onPressed: () {
+                _showStyle71Dialog(context);
+              },
+            ),
+            ListItem(
+              title: "Icon+标题+单按钮",
+              isSupportTheme: true,
+              describe: '单按钮、有头部Icon',
+              onPressed: () {
+                _showStyle7Dialog(context);
+              },
+            ),
+            ListItem(
+              title: "多按钮 + 标题+信息",
+              isSupportTheme: true,
+              describe: '有标题、多按钮、辅助信息为文案',
+              onPressed: () {
+                _showStyle6Dialog(context);
+              },
+            ),
+            ListItem(
+              title: "多按钮 + 标题",
+              isSupportTheme: true,
+              describe: '标题、多按钮',
+              onPressed: () {
+                _showStyle5_1Dialog(context);
+              },
+            ),
+            ListItem(
+              title: "多按钮 + 信息",
+              isSupportTheme: true,
+              describe: '无标题、多按钮、辅助信息为文案',
+              onPressed: () {
+                _showStyle5Dialog(context);
+              },
+            ),
+            ListItem(
+              title: "标题+信息+输入+按钮",
+              isSupportTheme: true,
+              describe: '中间有输入框弹框',
+              onPressed: () {
+                _showMiddleInputDialog(context);
+              },
+            ),
+            ListItem(
+              title: "标题+输入+按钮",
+              isSupportTheme: true,
+              describe: '中间有输入框弹框',
+              onPressed: () {
+                _showMiddleInputDialog2(context);
+              },
+            ),
+            ListItem(
+              title: "标题+输入+按钮",
+              isSupportTheme: true,
+              describe: '中间有输入框弹框, 设置最大高度',
+              onPressed: () {
+                _showMiddleInputDialog3(context);
+              },
+            ),
+            ListItem(
+              title: "标题+单选选项+按钮",
+              isSupportTheme: true,
+              describe: '中间单选弹框（SingleSelectDialogWidget）',
+              onPressed: () {
+                _showMiddleSingleSelectPicker(context);
+              },
+            ),
+            ListItem(
+              title: "标题+多选选项+按钮",
+              isSupportTheme: true,
+              describe: '中间多选弹框（MultiSelectDialog）',
+              onPressed: () {
+                _showMiddleMultiSelectDialog(context);
+              },
+            ),
+            ListItem(
+              title: "标题+提示信息文本+多选选项+按钮",
+              isSupportTheme: true,
+              describe: '中间多选弹框（MultiSelectDialog）',
+              onPressed: () {
+                _showMiddleMultiSelectWithMessageDialog(context);
+              },
+            ),
+            ListItem(
+              title: "标题+提示信息Widget+多选选项+按钮",
+              isSupportTheme: true,
+              describe: '中间多选弹框（MultiSelectDialog）',
+              onPressed: () {
+                _showMiddleMultiSelectWithMessageWidgetDialog(context);
+              },
+            ),
+            ListItem(
+              title: "Loading Dialog",
+              describe: 'LoadingDialog Example',
+              onPressed: () {
+                _showBrnLoadingDialog(context);
+              },
+            ),
+            ListItem(
+              title: "Safe Dialog",
+              describe: '可以放心 pop 的 Dialog，防止误关闭页面',
+              onPressed: () {
+                _showSafeDialog(context);
+              },
+            ),
+            ListItem(
+              title: "Share Dialog",
+              isSupportTheme: true,
+              describe: '分享Dialog（五个 icon）',
+              onPressed: () {
+                _showBrnShareDialog5(context);
+              },
+            ),
+            ListItem(
+              title: "Share Dialog",
+              isSupportTheme: true,
+              describe: '分享Dialog（3个 icon）',
+              onPressed: () {
+                _showBrnShareDialog3(context);
+              },
+            ),
+            ListItem(
+              title: "Two Vertical Button Dialog（单按钮）",
+              isSupportTheme: true,
+              describe: '主次要按钮Dialog',
+              onPressed: () {
+                _showBrnOneVerticalButtonDialogDialog(context);
+              },
+            ),
+            ListItem(
+              title: "Two Vertical Button Dialog（双按钮）",
+              describe: '主次要按钮Dialog',
+              isSupportTheme: true,
+              onPressed: () {
+                _showBrnTwoVerticalButtonDialogDialog(context);
+              },
+            ),
+            ListItem(
+              title: "纯文本弹框",
+              isSupportTheme: true,
+              describe: '标题+纯本文内容+按钮',
+              onPressed: () {
+                _showStyle81Dialog(context);
+              },
+            ),
+            ListItem(
+              title: "纯文本弹框含富文本",
+              isSupportTheme: true,
+              describe: '标题+纯本文内容含富文本+按钮',
+              onPressed: () {
+                _showStyle82Dialog(context);
+              },
+            ),
+            ListItem(
+              title: "纯文本弹框无标题",
+              isSupportTheme: true,
+              describe: '纯本文内容+按钮',
+              onPressed: () {
+                _showStyle83Dialog(context);
+              },
+            ),
+            ListItem(
+              title: "纯文本弹框无操作按钮",
+              isSupportTheme: true,
+              describe: '标题+纯本文内容',
+              onPressed: () {
+                _showStyle84Dialog(context);
+              },
+            ),
+          ],
+        ));
   }
 
   void _showMiddleSingleSelectPicker(BuildContext context) {
@@ -422,7 +342,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       state(() {});
                     },
                     onSubmitClick: (data) {
-                      //BrnToast.show(data!, context);
+                      PhoenixToast.show(data!, context);
                     });
               },
             ));
@@ -450,7 +370,7 @@ class _MyHomePageState extends State<MyHomePage> {
               data.forEach((item) {
                 str = str + item.content + "  ";
               });
-              // // BrnToast.show(str, context);
+              PhoenixToast.show(str, context);
               return true;
             }));
   }
@@ -519,7 +439,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     data.forEach((item) {
                       str = str + item.content + "  ";
                     });
-                    // // BrnToast.show(str, context);
+                    PhoenixToast.show(str, context);
                     return true;
                   });
             }));
@@ -548,7 +468,7 @@ class _MyHomePageState extends State<MyHomePage> {
               data.forEach((item) {
                 str = str + item.content + "  ";
               });
-              // BrnToast.show(str, context);
+              PhoenixToast.show(str, context);
               return true;
             }));
   }
@@ -565,11 +485,11 @@ class _MyHomePageState extends State<MyHomePage> {
           child: BrnCSS2Text.toTextView(
               "这是一条增使用标签修改文字颜色的example\<font color = '#8ac6d1'\>我是带颜色的文字</font>，"
               "这是颜色标签后边的文字", linksCallback: (String? text, String? linkUrl) {
-            // BrnToast.show('$text clicked!  Url is $linkUrl', context);
+            PhoenixToast.show('$text clicked!  Url is $linkUrl', context);
           }),
         ),
         showIcon: true, onConfirm: () {
-      // BrnToast.show("确定", context);
+      PhoenixToast.show("确定", context);
     }, onCancel: () {
       Navigator.pop(context);
     });
@@ -591,10 +511,10 @@ class _MyHomePageState extends State<MyHomePage> {
         dismissOnActionsTap: false,
         barrierDismissible: true,
         onConfirm: (value) {
-          // BrnToast.show(value, context);
+          PhoenixToast.show(value, context);
         },
         onCancel: () {
-          // BrnToast.show("取消", context);
+          PhoenixToast.show("取消", context);
           Navigator.pop(context);
         }).show(context);
   }
@@ -612,10 +532,10 @@ class _MyHomePageState extends State<MyHomePage> {
         inputEditingController: TextEditingController()..text = 'bbb',
         textInputAction: TextInputAction.done,
         onConfirm: (value) {
-          // BrnToast.show(value, context);
+          PhoenixToast.show(value, context);
         },
         onCancel: () {
-          // BrnToast.show("取消", context);
+          PhoenixToast.show("取消", context);
           Navigator.pop(context);
         }).show(context);
   }
@@ -631,10 +551,10 @@ class _MyHomePageState extends State<MyHomePage> {
         barrierDismissible: false,
         textInputAction: TextInputAction.done,
         onConfirm: (value) {
-          // BrnToast.show(value, context);
+          PhoenixToast.show(value, context);
         },
         onCancel: () {
-          // BrnToast.show("取消", context);
+          PhoenixToast.show("取消", context);
           Navigator.pop(context);
         }).show(context);
   }
@@ -643,7 +563,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _showStyle1Dialog0(BuildContext context) {
     DialogManager.showSingleButtonDialog(context,
         label: "知道了", message: "辅助内容容信息", onTap: () {
-      // BrnToast.show('知道了', context);
+      PhoenixToast.show('知道了', context);
       Navigator.pop(context);
     });
   }
@@ -654,7 +574,7 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       barrierDismissible: true,
       builder: (BuildContext dialogContext) {
-        return PhoenixDialog(
+        return const PhoenixDialog(
           messageText: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息",
           actionsText: [],
         );
@@ -666,7 +586,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _showStyle1Dialog(BuildContext context) {
     DialogManager.showSingleButtonDialog(context,
         label: "知道了", message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息", onTap: () {
-      // BrnToast.show('知道了', context);
+      PhoenixToast.show('知道了', context);
       Navigator.pop(context);
     });
   }
@@ -677,7 +597,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: "标题内容",
         label: "知道了",
         message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息", onTap: () {
-      // BrnToast.show('知道了', context);
+      PhoenixToast.show('知道了', context);
       Navigator.pop(context);
     });
   }
@@ -701,7 +621,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             )), onTap: () {
-      // BrnToast.show('知道了', context);
+      PhoenixToast.show('知道了', context);
       Navigator.pop(context);
     });
   }
@@ -713,9 +633,9 @@ class _MyHomePageState extends State<MyHomePage> {
         cancel: '取消',
         confirm: '确定',
         message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息", onConfirm: () {
-      // BrnToast.show("确定", context);
+      PhoenixToast.show("确定", context);
     }, onCancel: () {
-      // BrnToast.show("取消", context);
+      PhoenixToast.show("取消", context);
       Navigator.pop(context);
     });
   }
@@ -730,7 +650,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         title: "标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题",
         indexedActionClickCallback: (index) {
-      // BrnToast.show("$index", context);
+      PhoenixToast.show("$index", context);
     });
   }
 
@@ -744,7 +664,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息",
         indexedActionClickCallback: (index) {
-      // BrnToast.show("$index", context);
+      PhoenixToast.show("$index", context);
     });
   }
 
@@ -759,7 +679,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息",
         indexedActionClickCallback: (index) {
-      // BrnToast.show("$index", context);
+      PhoenixToast.show("$index", context);
     });
   }
 
@@ -767,15 +687,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void _showStyle71Dialog(BuildContext context) {
     DialogManager.showConfirmDialog(context,
         showIcon: true,
-        iconWidget: PhoenixTools.getAssetImage("icons/icon_warning.png",
-            package: 'phoenix_dialog'),
+        iconWidget: PhoenixTools.getAssetImage("icons/icon_warning.png"),
         title: "这个是自定义 icon 展示",
         confirm: "确定",
         cancel: "取消",
         message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信", onConfirm: () {
-      // BrnToast.show("确定", context);
+      PhoenixToast.show("确定", context);
     }, onCancel: () {
-      // BrnToast.show("取消", context);
+      PhoenixToast.show("取消", context);
       Navigator.pop(context);
     });
   }
@@ -784,7 +703,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _showStyle7Dialog(BuildContext context) {
     DialogManager.showSingleButtonDialog(context,
         showIcon: true, title: "恭喜你完成填写", label: "确定", onTap: () {
-      // BrnToast.show("确定", context);
+      PhoenixToast.show("确定", context);
       Navigator.pop(context);
     });
   }
@@ -795,9 +714,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: "标题内容,标题内容,标题内容标题内容,标题内容标题内容,标题内容",
         cancel: '取消',
         confirm: '确定', onConfirm: () {
-      // BrnToast.show("确定", context);
+      PhoenixToast.show("确定", context);
     }, onCancel: () {
-      // BrnToast.show("取消", context);
+      PhoenixToast.show("取消", context);
       Navigator.pop(context);
     });
   }
@@ -810,9 +729,9 @@ class _MyHomePageState extends State<MyHomePage> {
         confirm: '确定',
         warning: '警示文案',
         message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息", onConfirm: () {
-      // BrnToast.show("确定", context);
+      PhoenixToast.show("确定", context);
     }, onCancel: () {
-      // BrnToast.show("取消", context);
+      PhoenixToast.show("取消", context);
       Navigator.pop(context);
     });
   }
@@ -838,22 +757,22 @@ class _MyHomePageState extends State<MyHomePage> {
         }),
         message: "辅助内容信息辅助内容信息辅助内容信息辅助内容信息辅助内容信息",
         onConfirm: () {
-          // BrnToast.show("确定", context);
+          PhoenixToast.show("确定", context);
         },
         onCancel: () {
-          // BrnToast.show("取消", context);
+          PhoenixToast.show("取消", context);
           Navigator.pop(context);
         });
   }
 
   ///底部有输入框弹框
   void _showBrnLoadingDialog(BuildContext context) {
-    // LoadingDialog.show(context).then((value) {
-    //   // BrnToast.show('result: $value', context);
-    // });
-    // Future.delayed(const Duration(seconds: 5)).then((_) {
-    //   LoadingDialog.dismiss(context, 'dismiss 定时取消');
-    // });
+    LoadingDialog.show(context).then((value) {
+      PhoenixToast.show('result: $value', context);
+    });
+    Future.delayed(const Duration(seconds: 5)).then((_) {
+      LoadingDialog.dismiss(context, 'dismiss 定时取消');
+    });
   }
 
   ///安全关闭的弹框
@@ -866,7 +785,7 @@ class _MyHomePageState extends State<MyHomePage> {
             content: 'Safe AA',
           );
         }).then((result) {
-      // BrnToast.show('result: $result ', context);
+      PhoenixToast.show('result: $result ', context);
     });
 
     SafeDialog.show(
@@ -876,7 +795,7 @@ class _MyHomePageState extends State<MyHomePage> {
             content: 'Safe BB',
           );
         }).then((result) {
-      // BrnToast.show('result: $result ', context);
+      PhoenixToast.show('result: $result ', context);
     });
 
     Future.delayed(const Duration(seconds: 5)).then((_) {
@@ -901,12 +820,11 @@ class _MyHomePageState extends State<MyHomePage> {
       titleText: "测试标题",
       descText: "测试辅助信息测试辅助信息测试辅助信息测试辅助信息测试辅助信息",
       clickCallBack: (int channel, int index) {
-        // BrnToast.show("channel: $channel, index: $index", context);
+        PhoenixToast.show("channel: $channel, index: $index", context);
       },
       getCustomChannelWidget: (int index) {
         if (index == 2) {
-          return PhoenixTools.getAssetImage("images/icon_custom_share.png",
-              package: 'phoenix_dialog');
+          return PhoenixTools.getAssetImage("images/icon_custom_share.png");
         } else {
           return null;
         }
@@ -936,18 +854,15 @@ class _MyHomePageState extends State<MyHomePage> {
       titleText: "测试标题",
       descText: "测试辅助信息测试辅助信息测试辅助信息测试辅助信息测试辅助信息",
       clickCallBack: (int channel, int index) {
-        // BrnToast.show("channel: $channel, index: $index", context);
+        PhoenixToast.show("channel: $channel, index: $index", context);
       },
       getCustomChannelWidget: (int index) {
         if (index == 1) {
-          return PhoenixTools.getAssetImage("images/icon_custom_share.png",
-              package: 'phoenix_dialog');
+          return PhoenixTools.getAssetImage("images/icon_custom_share.png");
         } else if (index == 2)
-          return PhoenixTools.getAssetImage("images/icon_custom_share.png",
-              package: 'phoenix_dialog');
+          return PhoenixTools.getAssetImage("images/icon_custom_share.png");
         else if (index == 4)
-          return PhoenixTools.getAssetImage("images/icon_custom_share.png",
-              package: 'phoenix_dialog');
+          return PhoenixTools.getAssetImage("images/icon_custom_share.png");
         else
           return null;
       },
@@ -1017,10 +932,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 "呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表",
             submitText: "提交",
             linksCallback: (String? text, String? url) {
-              // BrnToast.show(text!, context);
+              PhoenixToast.show(text!, context);
             },
             onSubmitClick: () {
-              // BrnToast.show("点击了纯文本弹框", context);
+              PhoenixToast.show("点击了纯文本弹框", context);
             }));
   }
 
@@ -1039,7 +954,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 "本文呢表纯本文呢表纯本文呢表纯本文呢呢表纯本文呢表纯本文呢表纯本文呢",
             submitText: "提交",
             onSubmitClick: () {
-              // BrnToast.show("点击了纯文本弹框", context);
+              PhoenixToast.show("点击了纯文本弹框", context);
             }));
   }
 
@@ -1059,7 +974,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 "本文呢表纯本文呢表纯本文呢表纯本文呢呢表纯本文呢表纯本文呢表纯本文呢",
             submitText: "提交",
             onSubmitClick: () {
-              // BrnToast.show("点击了纯文本弹框", context);
+              PhoenixToast.show("点击了纯文本弹框", context);
               Navigator.of(context).pop();
             }));
   }
