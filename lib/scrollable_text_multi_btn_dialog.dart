@@ -44,6 +44,9 @@ class ScrollableTextMultiBtnDialog extends Dialog {
   /// 是否展示底部操作区域 默认true展示
   final bool isShowOperateWidget;
 
+  /// 自定义超链接颜色
+  final Color? linkColor;
+
   const ScrollableTextMultiBtnDialog(
       {super.key,
       this.title,
@@ -58,24 +61,27 @@ class ScrollableTextMultiBtnDialog extends Dialog {
       this.onSecondaryButtonClick,
       this.submitBgColor,
       this.linksCallback,
-      this.isShowOperateWidget = true});
+      this.isShowOperateWidget = true,
+      this.linkColor});
 
   @override
   Widget build(BuildContext context) {
     return ScrollableTextMultiBtn(
-        title: title,
-        isCenter: isCenter,
-        isClose: isClose,
-        contentText: contentText,
-        textColor: textColor,
-        textFontSize: textFontSize,
-        submitText: submitText,
-        secondaryButtonText: secondaryButtonText,
-        onSubmitClick: onSubmitClick,
-        onSecondaryButtonClick: onSecondaryButtonClick,
-        submitBgColor: submitBgColor,
-        linksCallback: linksCallback,
-        isShowOperateWidget: isShowOperateWidget);
+      title: title,
+      isCenter: isCenter,
+      isClose: isClose,
+      contentText: contentText,
+      textColor: textColor,
+      textFontSize: textFontSize,
+      submitText: submitText,
+      secondaryButtonText: secondaryButtonText,
+      onSubmitClick: onSubmitClick,
+      onSecondaryButtonClick: onSecondaryButtonClick,
+      submitBgColor: submitBgColor,
+      linksCallback: linksCallback,
+      isShowOperateWidget: isShowOperateWidget,
+      linkColor: linkColor,
+    );
   }
 }
 
@@ -119,6 +125,9 @@ class ScrollableTextMultiBtn extends StatelessWidget {
   /// 是否展示底部操作区域
   final bool isShowOperateWidget;
 
+  /// 自定义超链接颜色
+  final Color? linkColor;
+
   const ScrollableTextMultiBtn(
       {super.key,
       this.title,
@@ -133,7 +142,8 @@ class ScrollableTextMultiBtn extends StatelessWidget {
       this.submitBgColor,
       this.onSecondaryButtonClick,
       this.linksCallback,
-      this.isShowOperateWidget = true});
+      this.isShowOperateWidget = true,
+      this.linkColor});
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +166,8 @@ class ScrollableTextMultiBtn extends StatelessWidget {
                       defaultStyle: TextStyle(
                           fontSize: textFontSize,
                           color: textColor,
-                          fontWeight: FontWeight.normal))
+                          fontWeight: FontWeight.normal),
+                      linkColor: linkColor)
                 ]),
               ),
             ),
