@@ -163,7 +163,7 @@ class ContentMultiBtnExportWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
       child: BigMainButton(
-        bgColor: themeData?.commonConfig.colorLink,
+        bgColor: themeData?.commonConfig.colorTextHint,
         title: secondaryButtonText ??
             BrnIntl.of(context).localizedResource.confirm,
         onTap: () {
