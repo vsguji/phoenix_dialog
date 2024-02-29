@@ -152,7 +152,8 @@ class ContentMultiBtnExportWidget extends StatelessWidget {
       child: BigMainButton(
         title: submitText ?? BrnIntl.of(context).localizedResource.confirm,
         onTap: () {
-          Navigator.of(context).pop(onSubmit);
+          Navigator.of(context).pop();
+          if (onSubmit != null) onSubmit!();
         },
       ),
     );
@@ -167,7 +168,8 @@ class ContentMultiBtnExportWidget extends StatelessWidget {
         title: secondaryButtonText ??
             BrnIntl.of(context).localizedResource.confirm,
         onTap: () {
-          Navigator.of(context).pop(onSecondaryButtonClick);
+          Navigator.of(context).pop();
+          if (onSecondaryButtonClick != null) onSecondaryButtonClick!();
         },
       ),
     );
