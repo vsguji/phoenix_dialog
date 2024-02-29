@@ -13,6 +13,9 @@ class ContentMultiBtnExportWidget extends StatelessWidget {
   /// 标题
   final String? title;
 
+  /// 标题居中
+  final bool isCenter;
+
   /// 是否可关闭
   final bool isClose;
 
@@ -43,6 +46,7 @@ class ContentMultiBtnExportWidget extends StatelessWidget {
   ContentMultiBtnExportWidget(this.contentWidget,
       {super.key,
       this.title,
+      this.isCenter = true,
       required this.isClose,
       this.submitText,
       this.secondaryButtonText,
@@ -103,12 +107,15 @@ class ContentMultiBtnExportWidget extends StatelessWidget {
   Widget _generateTitleWidget() {
     return Padding(
       padding: null != title && title!.isNotEmpty
-          ? const EdgeInsets.fromLTRB(20, 28, 20, 12)
+          ? isCenter
+              ? const EdgeInsets.fromLTRB(0, 28, 0, 12)
+              : const EdgeInsets.fromLTRB(20, 28, 20, 12)
           : const EdgeInsets.only(top: 20),
       child: null != title && title!.isNotEmpty
           ? Text(
               title!,
               style: DialogUtils.getDialogTitleStyle(themeData!),
+              textAlign: isCenter ? TextAlign.center : TextAlign.left,
             )
           : Container(),
     );

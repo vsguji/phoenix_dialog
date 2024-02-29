@@ -8,6 +8,9 @@ class ScrollableTextMultiBtnDialog extends Dialog {
   /// 标题
   final String? title;
 
+  /// 标题居中
+  final bool isCenter;
+
   /// 是否可关闭 默认true支持关闭
   final bool isClose;
 
@@ -45,6 +48,7 @@ class ScrollableTextMultiBtnDialog extends Dialog {
       {super.key,
       this.title,
       this.isClose = true,
+      this.isCenter = true,
       required this.contentText,
       this.textColor = const Color(0xFF666666),
       this.textFontSize = 16,
@@ -60,6 +64,7 @@ class ScrollableTextMultiBtnDialog extends Dialog {
   Widget build(BuildContext context) {
     return ScrollableTextMultiBtn(
         title: title,
+        isCenter: isCenter,
         isClose: isClose,
         contentText: contentText,
         textColor: textColor,
@@ -77,6 +82,9 @@ class ScrollableTextMultiBtnDialog extends Dialog {
 class ScrollableTextMultiBtn extends StatelessWidget {
   /// 标题
   final String? title;
+
+  /// 标题居中
+  final bool isCenter;
 
   /// 是否可关闭
   final bool isClose;
@@ -114,6 +122,7 @@ class ScrollableTextMultiBtn extends StatelessWidget {
   const ScrollableTextMultiBtn(
       {super.key,
       this.title,
+      this.isCenter = true,
       this.isClose = true,
       required this.contentText,
       this.textColor,
@@ -155,6 +164,7 @@ class ScrollableTextMultiBtn extends StatelessWidget {
         ),
       ),
       title: title,
+      isCenter: isCenter,
       isClose: isClose,
       submitText: submitText,
       secondaryButtonText: secondaryButtonText,
