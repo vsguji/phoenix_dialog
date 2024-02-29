@@ -1001,7 +1001,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _showStyle82Dialog(BuildContext context) {
     showDialog(
         context: context,
-        builder: (_) => ScrollableTextDialog(
+        builder: (_) => ScrollableTextMultiBtnDialog(
             title: "纯文本标题",
             contentText:
                 "纯本文呢表纯本文呢表\<font color = '#008886'\>纯本文呢呢表纯\</font\>本文呢表纯本文呢表纯本文呢表纯本文\<a href='www.baidu.com'\>XXXXX\</a\>纯本文呢表纯本文呢表纯本文呢呢表纯本文呢表纯本文"
