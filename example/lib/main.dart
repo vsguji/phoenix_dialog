@@ -1016,6 +1016,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 "文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文"
                 "呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表纯本文呢表",
             submitText: "提交",
+            secondaryButtonText: "取消",
+            onSecondaryButtonClick: () {},
             linksCallback: (String? text, String? url) {
               // BrnToast.show(text!, context);
             },

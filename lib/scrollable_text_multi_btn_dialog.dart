@@ -65,7 +65,9 @@ class ScrollableTextMultiBtnDialog extends Dialog {
         textColor: textColor,
         textFontSize: textFontSize,
         submitText: submitText,
+        secondaryButtonText: secondaryButtonText,
         onSubmitClick: onSubmitClick,
+        onSecondaryButtonClick: onSecondaryButtonClick,
         submitBgColor: submitBgColor,
         linksCallback: linksCallback,
         isShowOperateWidget: isShowOperateWidget);
@@ -155,10 +157,16 @@ class ScrollableTextMultiBtn extends StatelessWidget {
       title: title,
       isClose: isClose,
       submitText: submitText,
+      secondaryButtonText: secondaryButtonText,
       submitBgColor: submitBgColor,
       onSubmit: () {
         if (onSubmitClick != null) {
           onSubmitClick!();
+        }
+      },
+      onSecondaryButtonClick: () {
+        if (onSecondaryButtonClick != null) {
+          onSecondaryButtonClick!();
         }
       },
       isShowOperateWidget: isShowOperateWidget,
