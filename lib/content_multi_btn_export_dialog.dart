@@ -145,8 +145,7 @@ class ContentMultiBtnExportWidget extends StatelessWidget {
       child: BigMainButton(
         title: submitText ?? BrnIntl.of(context).localizedResource.confirm,
         onTap: () {
-          Navigator.of(context)
-              .pop(submitText ?? BrnIntl.of(context).localizedResource.confirm);
+          Navigator.of(context).pop(onSubmit);
         },
       ),
     );
@@ -155,19 +154,11 @@ class ContentMultiBtnExportWidget extends StatelessWidget {
   /// 构建次按钮widget
   Widget _configSecondaryButton(BuildContext context) {
     return Container(
-      alignment: Alignment.center,
-      child: InkWell(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        child: Center(
-          child: Text(
-            secondaryButtonText!,
-            style: TextStyle(
-              color: themeData!.commonConfig.brandPrimary,
-              fontSize: 16,
-            ),
-          ),
-        ),
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+      child: BigMainButton(
+        bgColor: themeData?.commonConfig.colorLink,
+        title: secondaryButtonText ??
+            BrnIntl.of(context).localizedResource.confirm,
         onTap: () {
           Navigator.of(context).pop(onSecondaryButtonClick);
         },
